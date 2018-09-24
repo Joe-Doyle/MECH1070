@@ -23,6 +23,9 @@ mileDistanceFlight = pixDistance/OneMileInPixels
 %pixels between uml and boston driving 495 to 93
 %unlimited points, exit with return key
 [xroad,yroad] = ginput
+%plot points
+hold on;
+plot(xroad,yroad,'r-o')
 arrLen = length(xroad)
 %iterate through all points and calculate cumulative distances
 longDis = 0
