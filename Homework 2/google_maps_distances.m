@@ -23,6 +23,7 @@ pixDistance = sqrt(xTravel^2 + yTravel^2)
 %pixels to miles
 mileDistanceFlight = pixDistance/OneMileInPixels
 
-%
+%pixels between uml and boston driving 495 to 93
+%unlimited points, exit with return key
 [xroad,yroad] = ginput
 
