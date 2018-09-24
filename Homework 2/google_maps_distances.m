@@ -15,15 +15,27 @@ OneMileInPixels   = FiveMilesInPixels/5;
 [xLowell,yLowell] = ginput(1)
 %click Boston
 [xBOS,yBOS]       = ginput(1)
-%change in x,y
-xTravel = xLowell - xBOS;
-yTravel = yLowell - yBOS;
-%distance
-pixDistance = sqrt(xTravel^2 + yTravel^2)
+%change in x,y, to pixel distance
+pixDistance = sqrt((xLowell - xBOS)^2 + (yLowell - yBOS)^2)
 %pixels to miles
 mileDistanceFlight = pixDistance/OneMileInPixels
 
 %pixels between uml and boston driving 495 to 93
 %unlimited points, exit with return key
 [xroad,yroad] = ginput
+plot(xroad,yroad,'r-o')
+arrLen = length(xroad)
+%iterate through all points and calculate cumulative distances
+longDis = 0
+for i = 2:arrLen
+    longDis = longDis + sqrt((xroad(i) - xroad(i-1)).^2 + (yroad(i) - yroad(i-1)).^2)
+end
+mileDistanceDrive = longDis/OneMileInPixels
+
+
+
+
+
+
+
 
