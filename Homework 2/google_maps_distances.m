@@ -23,7 +23,6 @@ mileDistanceFlight = pixDistance/OneMileInPixels
 %pixels between uml and boston driving 495 to 93
 %unlimited points, exit with return key
 [xroad,yroad] = ginput
-plot(xroad,yroad,'r-o')
 arrLen = length(xroad)
 %iterate through all points and calculate cumulative distances
 longDis = 0
@@ -32,8 +31,9 @@ for i = 2:arrLen
 end
 mileDistanceDrive = longDis/OneMileInPixels
 
-
-
+%get angle between lowell and boston
+angle = atan((yBOS-yLowell)/(xBOS-xLowell))
+angle = 270 - rad2deg(angle)
 
 
 
