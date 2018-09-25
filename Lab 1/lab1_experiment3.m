@@ -22,7 +22,7 @@ try
     % a new x,y,z position with a feedrate = F. 
     fprintf (s,'G1 x0.50 F10')
     fprintf (s,'G1 x0.00 F10')
-    display(?All Done!!!?)
+    display('All Done!!!')
     % Close the connection to the GRBL controller
     fclose(s)
 catch ME
