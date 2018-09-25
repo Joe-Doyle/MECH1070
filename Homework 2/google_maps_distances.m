@@ -38,7 +38,7 @@ mileDistanceDrive = longDis/OneMileInPixels
 
 %get angle between lowell and boston
 angle = atan((yBOS-yLowell)/(xBOS-xLowell));
-angle = 270 - rad2deg(angle)
+angle = 90 + rad2deg(angle)
 
 %helicopter flight time
 fracHour = 160/mileDistanceFlight;
