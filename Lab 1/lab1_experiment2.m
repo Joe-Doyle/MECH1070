@@ -3,7 +3,7 @@ try
     % associated with the controller USB ? Change the 
     % COM port description in the single quotes as 
     % needed. 
-    s = serial('COM3')
+    s = serial('/dev/tty.usbmodem1411')
     % Next we will setup the port communication speed
     % 	This may require some trial and error, but 
     %	115200 appears to be a good value (9600 may 
@@ -20,8 +20,8 @@ try
     fprintf (s, 'G17 G20 G90 G94 G54')
     % The following commands simply move the motor to
     % a new x,y,z position with a feedrate = F. 
-    fprintf (s,'G1 x1.0 F10')
-    fprintf (s,'G1 x0.00 F10')
+    fprintf (s,'G1 x1.0 F7')
+    fprintf (s,'G1 x0.00 F7')
     %out = fscanf(s)
     display('All Done!!!')
     % Close the connection to the GRBL controller
