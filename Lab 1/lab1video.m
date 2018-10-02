@@ -6,7 +6,7 @@ try
     
     NFrames = 83;
     
-    for(i = 3:8:NFrames)
+    for(i = 3:4:NFrames)
        figure
        
        currentVideoFrame = read(videoFrames, i);
@@ -25,7 +25,7 @@ try
        Ly = y(2) - y(1);
        
        theta(i) = atan2d(Ly, Lx)
-       time(i) = i*1/240;
+       time(i) = i*1/60;
        
        pause(0.1);
 end
@@ -42,6 +42,40 @@ end
     a = xlabel('Time [s]')
     set(a,'fontsize',18,'fontname','times')
     a = ylabel('Angle, [deg]')
+    set(a,'fontsize',18,'fontname','times')
+    
+    %processing angular velocity
+    for(i = 1:(length(theta)-1))
+        angularVel(i) = (theta(i+1)-theta(i))/(1/60);
+        timeAngVel(i) = i*(1/60)
+    end
+    
+    figure;
+    a = axes
+    set(a,'fontsize',18,'fontname','times')
+    a = plot(timeAngVel, angularVel,'>-')
+    set(a,'linewidth',2,'color','b','markersize',6)
+    grid on
+    a = xlabel('Time [s]')
+    set(a,'fontsize',18,'fontname','times')
+    a = ylabel('Angular Velocity, [deg/s]')
+    set(a,'fontsize',18,'fontname','times')
+    
+    %processing angular acceleration
+    for(i = 1:(length(angularVel)-1))
+        angularAcc(i) = (angularVel(i+1)-angularVel(i))/(1/60);
+        timeAngAcc(i) = i*(1/60)
+    end
+    
+    figure;
+    a = axes
+    set(a,'fontsize',18,'fontname','times')
+    a = plot(timeAngAcc, angularAcc,'>-')
+    set(a,'linewidth',2,'color','b','markersize',6)
+    grid on
+    a = xlabel('Time [s]')
+    set(a,'fontsize',18,'fontname','times')
+    a = ylabel('Angular Acceleration, [deg/s^2]')
     set(a,'fontsize',18,'fontname','times')
     
 catch ME
