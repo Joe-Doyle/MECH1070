@@ -19,14 +19,8 @@ try
     % using the ?print? function 
     fprintf (s, 'G17 G20 G90 G94 G54')
     % The following commands simply move the motor to
-    % a new x,y,z position with a feedrate = F. 
-    %0.4585
-    fprintf (s,'G1 x0.0917 y0.3668 F5')
-    %fprintf (s,'G1 x0.05 F5')
-    %pause
-    %fprintf (s,'G1 y0.3668 F5')
-    %fprintf (s,'G1 x0.00 F5')
-    %out = fscanf(s)
+    % a new x,y,z position with a feedrate = F.
+    fprintf (s,'G1 x0.0917 y0.3668 F5') %split 0.4585 into whatever ratio needed
     display('All Done!!!')
     % Close the connection to the GRBL controller
     fclose(s)
