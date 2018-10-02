@@ -4,19 +4,17 @@ try
     
     videoFrames = VideoReader('lab1video.m4v');
     
-    NFrames = 18;
+    NFrames = 83;
     
-    for(i = 3:NFrames)
+    for(i = 3:8:NFrames)
        figure
        
        currentVideoFrame = read(videoFrames, i);
-       
        imshow(currentVideoFrame(:,:,:,1))
        
        [x,y] = ginput(2);
        
        hold on;
-       
        plot(x,y, 'r-o')
        
        frameNumber = i
@@ -29,13 +27,11 @@ try
        theta(i) = atan2d(Ly, Lx)
        time(i) = i*1/240;
        
-       
        pause(0.1);
-       
-       
-    end
+end
     
-    %theta(theta==0) = []
+    theta(theta==0) = [];
+    time(time==0) = [];
     
     figure;
     a = axes
@@ -47,10 +43,6 @@ try
     set(a,'fontsize',18,'fontname','times')
     a = ylabel('Angle, [deg]')
     set(a,'fontsize',18,'fontname','times')
-    
-    
-    
-    
     
 catch ME
     ME.message
