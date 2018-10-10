@@ -1,3 +1,7 @@
+%This script is for determining and plotting both a measured load vs.
+%deflection for a beam as well as the theoretical load vs. deflection using
+%the deflection formula and the material's young's modulus
+
 try
     len     = 5     %beam length in inches
     width   = 3/4   %beam profile width in inches
@@ -12,7 +16,7 @@ try
         .0548 .0605 .0653 .0711 .0770 .0834 .0890 .0958 .1031 .1125 ...
         .1232 .1330 .1410 .1505 .1665 .1776 .2032]
 
-    %generate vector of theoretical load values from youngs modulus and the
+    %generate vector of theoretical load values from young's modulus and the
     %deflection calculator function
     for i=1:length(load)
         theDef(i) = calcDef(len,load(i),pineMod,width,height)
