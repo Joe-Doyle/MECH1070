@@ -3,14 +3,13 @@ try
     s = serial('/dev/tty.usbmodem14401')
     set(s,'BaudRate',115200)
     fopen(s)
-    %pause(2)
     
     %open image
     MapImage = imread('Scale_Load.jpg');
     imshow(MapImage)
     hold on;
     
-    %pixel to inch calibration
+    %pixel to inch calibration and zeroing
     %click 0" line then +1" line
     [xscale1,yscale1] = ginput(1)
     plot(xscale1,yscale1,'g+')
@@ -20,6 +19,7 @@ try
     zero    = xscale1
     relpos  = 0
     
+    %configure CNC controller box
     fprintf (s, 'G17 G20 G90 G94 G54')
     
     for i = 1:15
@@ -41,13 +41,17 @@ try
             xmove = -2
         end
     
+        %account for automatic absolute positioning
         relpos = relpos + xmove
         
+        %create G code string
         CNCMotion = ['G1 x', num2str(relpos),' F10']
         
+        %print G code string to axis control box
         fprintf (s,CNCMotion)
     end
     
+    %close image and serial port
     close
     fclose(s)
 catch ME
