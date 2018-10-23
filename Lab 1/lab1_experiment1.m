@@ -3,7 +3,7 @@ try
         % associated with the controller USB ? Change the
         % COM port description in the single quotes as
         % needed.
-        s = serial('/dev/tty.usbmodem1461')
+        s = serial('/dev/tty.usbmodem14401')
         % Next we will setup the port communication speed
         % This may require some trial and error, but
         % 115200 appears to be a good value (9600 may
