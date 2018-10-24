@@ -1,6 +1,6 @@
 try
     %set up serial
-    s = serial('/dev/tty.usbmodem14401')
+    s = serial('/dev/tty.usbmodem3595310')
     set(s,'BaudRate',115200)
     fopen(s)
     
@@ -22,6 +22,7 @@ try
     %configure CNC controller box
     fprintf (s, 'G17 G20 G90 G94 G54')
     
+    %loop 15 times to allow 15 position clicks on image
     for i = 1:15
         xmove = 0
         %click on scale to acquire point to move
@@ -32,14 +33,10 @@ try
         xmove = xmove/ppi
     
         %limit movement to +2"
-        if(xmove > 2)
-            xmove = 2
-        end
+        if (xmove > 2); xmove = 2; end;
     
         %limit movement to -2"
-        if(xmove < -2)
-            xmove = -2
-        end
+        if(xmove < -2); xmove = -2; end;
     
         %account for automatic absolute positioning
         relpos = relpos + xmove
