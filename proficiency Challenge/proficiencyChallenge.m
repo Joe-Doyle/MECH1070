@@ -7,6 +7,10 @@ try
     prompt = 'Enter a positive integer of how many clicks you want ';
     numClk = input(prompt)
     
+    %user input of distance limit in inches
+    prompt = 'Enter a positive float of the maximum number of inches from center you want ';
+    distin = input(prompt)  %distance in inches
+    
     %set up serial
     s = serial('/dev/tty.usbmodem3595310')
     set(s,'BaudRate',115200)
@@ -27,6 +31,8 @@ try
     zero    = xscale1
     relPos  = 0
     
+    distip = distin*ppi     %distance from center in pixels
+    
     %configure CNC controller box
     fprintf (s, 'G17 G20 G90 G94 G54')
     
@@ -41,10 +47,10 @@ try
         xmove = xmove/ppi
     
         %limit movement to +2"
-        if (xmove > 2); xmove = 2; end;
+        if (xmove > distip); xmove = distin; end;
     
         %limit movement to -2"
-        if(xmove < -2); xmove = -2; end;
+        if(xmove < -distip); xmove = -distin; end;
     
         %account for automatic absolute positioning
         if(isRel), relPos = relPos + xmove; else, relPos = xmove; end
