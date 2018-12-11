@@ -1,5 +1,5 @@
 try
-        s = serial('/dev/tty.usbmodem14401')
+        s = serial('/dev/tty.usbmodem14501')
         set(s,'BaudRate',115200)
         fopen(s)
         % Set the new values of the parameters
